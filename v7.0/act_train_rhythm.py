@@ -4,6 +4,7 @@
 # Part 2 action script
 #
 
+import os
 import re
 import matplotlib.pyplot as plt
 import numpy as np
@@ -11,8 +12,6 @@ from tensorflow import keras
 import tensorflow as tf
 from sklearn.metrics import roc_auc_score
 from tensorflow.keras.models import Model
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 
 root = "mapdata/"

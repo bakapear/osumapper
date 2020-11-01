@@ -4,10 +4,10 @@
 # Part 7 action script
 #
 
+import os
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
-import os
 import re
 import subprocess
 import json

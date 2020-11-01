@@ -1,7 +1,11 @@
-import json
-from act_data_prep import *
-from act_train_rhythm import *
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 from act_flow_ds import *
+from act_train_rhythm import *
+from act_data_prep import *
+import json
+
 
 step1_load_maps("../maps.txt")
 

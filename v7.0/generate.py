@@ -1,11 +1,14 @@
-import sys
 import os
-from act_newmap_prep import *
-from act_rhythm_calc import *
-from act_gan import *
-from act_modding import *
-from act_final import *
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 from act_timing import *
+from act_final import *
+from act_modding import *
+from act_gan import *
+from act_rhythm_calc import *
+from act_newmap_prep import *
+import sys
+
 
 f = sys.argv[1]
 
