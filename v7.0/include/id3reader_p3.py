@@ -190,7 +190,8 @@ class _Frame:
                 self.rawData = zlib.decompress(self.rawData[5:])
             else:
                 # if _c: _coverage('badcdm!')
-                raise Id3Error('Unknown CDM compression: {:02x}'.format(self.rawData[0]))
+                raise Id3Error(
+                    'Unknown CDM compression: {:02x}'.format(self.rawData[0]))
                 # @TODO: re-interpret the decompressed frame.
 
         elif self.id in _simpleDataMapping['comment']:
@@ -256,14 +257,16 @@ class Reader:
         # if _t: _trace("ask %d (%s)" % (num,desc))
         if num > self.bytesLeft:
             # if _c: _coverage('long!')
-            raise Id3Error('Long read {}: {} {}'.format(desc, num, self.bytesLeft))
+            raise Id3Error('Long read {}: {} {}'.format(
+                desc, num, self.bytesLeft))
         bytes_read = self.file.read(num)
         self.bytesLeft -= num
 
         if len(bytes_read) < num:
             # if _t: _trace("short read with %d left, %d total" % (self.bytesLeft, self.header.size))
             # if _c: _coverage('short!')
-            raise Id3Error('Short read {}: {} {}'.format(desc, len(bytes_read), num))
+            raise Id3Error('Short read {}: {} {}'.format(
+                desc, len(bytes_read), num))
 
         if self.header.bUnsynchronized:
             unsync = 0
@@ -326,7 +329,8 @@ class Reader:
             encoding = rawdata[0]
             # print("in _interpret, encoding is {}".format(encoding))
             if 0 <= encoding < len(_encodings):
-                value = rawdata.strip(b' \t\r\n\0').decode(_encodings[encoding])
+                value = rawdata.strip(b' \t\r\n\0').decode(
+                    _encodings[encoding])
             else:
                 # This is a bit iffy.
                 # It may seem more reasonable to try iso8859-1 first, but that fails the
@@ -389,7 +393,8 @@ class Reader:
             self._readFrame = self._read_frame_rev4
         else:
             # if _c: _coverage('badmajor!')
-            raise Id3Error("Unsupported major version: {}".format(self.header.majorVersion))
+            raise Id3Error("Unsupported major version: {}".format(
+                self.header.majorVersion))
 
         # Interpret the flags
         self._interpret_flags()
@@ -540,7 +545,8 @@ class Reader:
         frame.bReadOnly = (frame.flags & 0x2000 != 0)
         frame.bCompressed = (frame.flags & 0x0080 != 0)
         if frame.bCompressed:
-            frame.decompressedSize = self._get_integer(self._read_bytes(4, 'decompsize'))
+            frame.decompressedSize = self._get_integer(
+                self._read_bytes(4, 'decompsize'))
             cb_data -= 4
             # if _c: _coverage('compress')
         frame.bEncrypted = (frame.flags & 0x0040 != 0)
@@ -596,7 +602,8 @@ class Reader:
             # if _c: _coverage('unsyncframe')
             pass
         if frame.flags & 0x0001:
-            frame.datalen = self._get_sync_safe_int(self._read_bytes(4, 'datalen'))
+            frame.datalen = self._get_sync_safe_int(
+                self._read_bytes(4, 'datalen'))
             cb_data -= 4
             # if _c: _coverage('datalenindic')
 
