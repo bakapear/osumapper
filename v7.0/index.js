@@ -2,11 +2,12 @@ let util = require('./util')
 let Zip = require('adm-zip')
 let TMP = 'temp'
 
-async function main () {
-  util.make(TMP)
-  switch (process.argv[2]) {
+main(process.argv[2], process.argv[3])
+
+async function main (type, file) {
+  if (!util.exists(TMP)) util.make(TMP)
+  switch (type) {
     case 'train': {
-      let file = process.argv[3]
       if (!file) return util.error('No file specified.')
       await util.py('training', [file])
       break
@@ -14,7 +15,6 @@ async function main () {
     case 'generate': {
       let zip = null
       let osu = {}
-      let file = process.argv[3]
       if (!file) return util.error('No file specified.')
       else if (file.endsWith('.osz')) {
         zip = new Zip(file)
@@ -54,10 +54,16 @@ async function main () {
 
       break
     }
+    case 'random': {
+      file = await util.randomMap(TMP)
+      main('generate', file)
+      break
+    }
+    default: {
+      util.error('No method given! Valid methods: train, generate, random')
+    }
   }
 }
-
-main()
 
 function cleanup () {
   let file = null

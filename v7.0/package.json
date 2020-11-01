@@ -5,6 +5,7 @@
   "main": "load_map.js",
   "dependencies": {
     "adm-zip": "^0.4.16",
+    "despair": "^2.1.2",
     "polynomial": "^1.4.3"
   },
   "devDependencies": {},

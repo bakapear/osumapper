@@ -1,6 +1,7 @@
 let child = require('child_process')
 let fs = require('fs')
 let path = require('path')
+let dp = require('despair')
 
 module.exports = {
   py: (file, args = []) => {
@@ -46,5 +47,26 @@ module.exports = {
   exists: file => fs.existsSync(file),
   join: (...args) => path.join(...args),
   open: file => fs.readFileSync(file, { encoding: 'utf-8' }),
-  make: dir => fs.mkdirSync(dir)
+  make: dir => fs.mkdirSync(dir),
+  randomMap: async dir => {
+    let maps = await dp('https://bloodcat.com/osu/', {
+      query: {
+        s: [1, 2, 3, 4, 0],
+        m: 0,
+        mod: 'json',
+        p: Math.floor(Math.random() * 500)
+      }
+    }).json()
+
+    let set = maps[Math.floor(Math.random() * maps.length)]
+    console.log(`Downloading "${set.artist} - ${set.title} [${set.creator}]"...`)
+
+    let map = await dp('https://bloodcat.com/osu/s/' + set.id, { encoding: 'binary' })
+
+    let name = map.headers['content-disposition']
+    name = decodeURIComponent(name.substr(name.indexOf("UTF-8''") + 7))
+
+    fs.writeFileSync(path.join(dir, name), map.body, { encoding: 'binary' })
+    return path.join(dir, name)
+  }
 }
