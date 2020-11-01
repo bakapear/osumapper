@@ -1,0 +1,32 @@
+{
+    "rhythm": {
+        "dist_multiplier": 1,
+        "note_density": 0.16,
+        "slider_favor": 0,
+        "divisor_favor": [0, 0, 0, 0],
+        "slider_max_ticks": 8
+    },
+    "gan" : {
+        "divisor" : 4,
+        "good_epoch" : 3,
+        "max_epoch" : 12,
+        "note_group_size" : 10,
+        "g_epochs" : 5,
+        "c_epochs" : 2,
+        "g_batch" : 50,
+        "g_input_size" : 50,
+        "c_true_batch" : 50,
+        "c_false_batch" : 2,
+        "c_randfalse_batch" : 18,
+        "note_distance_basis" : 100,
+        "next_from_slider_end" : true,
+        "max_ticks_for_ds" : 8,
+        "box_loss_border" : 0.15,
+        "box_loss_value" : 0.4,
+        "box_loss_weight" : 1
+    },
+    "modding" : {
+        "stream_regularizer" : 0,
+        "slider_mirror" : 1
+    }
+}

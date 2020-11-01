@@ -1,0 +1,9 @@
+"default": default model
+"sota": model trained with Sota Fujimori music (☆>5.0)
+"vtuber": model trained with VTuber music (☆4.0-5.3)
+"inst": model trained with rhythm game instrumental music (☆3.5-6.5)
+"tvsize": model trained with TV Size maps (☆3.5-5.0 BPM140-190)
+"hard": model trained with Hard difficulties (☆<3.5 BPM140-190)
+"normal": model trained with Normal difficulties (☆<2.7 BPM140-190)
+"lowbpm": model trained with low BPM music (☆3-4.5 BPM<140)
+"flower": ... ☆6.44~ jump practice
