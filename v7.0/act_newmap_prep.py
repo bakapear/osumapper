@@ -19,5 +19,5 @@ def step4_read_new_map(file_path, divisor=4):
 
     start = time.time()
     read_and_save_osu_tester_file(
-        file_path.strip(), filename="mapthis", divisor=divisor)
+        file_path.strip(), filename="temp/mapthis", divisor=divisor)
     end = time.time()

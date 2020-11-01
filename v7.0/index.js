@@ -1,5 +1,6 @@
 let util = require('./util')
 let Zip = require('adm-zip')
+let TMP = 'temp'
 
 async function main () {
   switch (process.argv[2]) {
@@ -16,14 +17,14 @@ async function main () {
         zip = new Zip(file)
         let entries = zip.getEntries()
         file = entries.find(entry => entry.entryName.endsWith('.osu')).entryName
-        zip.extractEntryTo(file, 'temp')
+        zip.extractEntryTo(file, TMP)
         for (let i = entries.length - 1; i >= 0; i--) {
           let entry = entries[i]
           if (entry.entryName.endsWith('.osu')) zip.deleteFile(entry)
         }
-        file = util.join(__dirname, 'temp', file)
+        file = util.join(__dirname, TMP, file)
         osu = util.parse(file)
-        try { zip.extractEntryTo(osu.general.audiofilename, 'temp') } catch (e) {
+        try { zip.extractEntryTo(osu.general.audiofilename, TMP) } catch (e) {
           return util.error(`Missing audio file "${osu.general.audiofilename}".`)
         }
       } else if (!file.endsWith('.mp3')) return util.error('Unsupported file type.')
@@ -61,10 +62,7 @@ function cleanup () {
     file = util.grab('./', x => x.endsWith('.osu'))
     if (file) util.remove(file)
   } while (file)
-  util.remove('temp')
-  util.remove('mapthis.json')
-  util.remove('mapthis.npz')
-  util.remove('temp_json_file.json')
+  util.remove(TMP)
 }
 
 process.on('exit', cleanup)

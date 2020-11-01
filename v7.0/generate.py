@@ -1,13 +1,13 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-from act_timing import *
-from act_final import *
-from act_modding import *
-from act_gan import *
-from act_rhythm_calc import *
-from act_newmap_prep import *
 import sys
+from act_newmap_prep import *
+from act_rhythm_calc import *
+from act_gan import *
+from act_modding import *
+from act_final import *
+from act_timing import *
 
 
 f = sys.argv[1]
@@ -55,5 +55,3 @@ modding_params = model_params['modding']
 osu_a, data = step7_modding(osu_a, data, modding_params)
 
 saved_osu_name = step8_save_osu_file(osu_a, data)
-
-step8_clean_up()

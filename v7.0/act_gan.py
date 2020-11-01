@@ -673,7 +673,7 @@ def step6_run_all(flow_dataset_npz="flow_dataset.npz"):
     global objs, predictions, ticks, timestamps, is_slider, is_spinner, is_note_end, sv, slider_ticks, dist_multiplier, divisor, note_distance_basis, slider_length_base, slider_types, slider_type_rotation, slider_cos, slider_sin, slider_cos_each, slider_sin_each, slider_type_length, slider_lengths, tick_diff, note_distances, maps, labels, special_train_data, special_train_labels, early_stop, loss_ma, extvar, plot_noise
 
     objs, predictions, ticks, timestamps, is_slider, is_spinner, is_note_end, sv, slider_ticks, dist_multiplier = read_map_predictions(
-        "rhythm_data.npz")
+        "temp/rhythm_data.npz")
 
     # get divisor from GAN_PARAMS
     divisor = GAN_PARAMS["divisor"]

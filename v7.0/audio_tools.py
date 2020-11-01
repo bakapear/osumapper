@@ -29,7 +29,7 @@ else:
     FFMPEG_PATH = "ffmpeg"
 
 
-def read_osu_file(path, convert=False, wav_name="wavfile.wav", json_name="temp_json_file.json"):
+def read_osu_file(path, convert=False, wav_name="wavfile.wav", json_name="temp/temp_json_file.json"):
     """
     Read .osu file to get audio path and JSON formatted map data
     "convert" will also read the music file (despite the name it doesn't convert)
@@ -54,7 +54,7 @@ def read_osu_file(path, convert=False, wav_name="wavfile.wav", json_name="temp_j
             #     raise Exception("FFMPEG Failure");
 
     # delete the temp json later
-    # if json_name == "temp_json_file.json":
+    # if json_name == "temp/temp_json_file.json":
     #     os.remove(json_name);
 
     return map_dict, mp3_file
@@ -226,7 +226,7 @@ def read_and_save_osu_file_using_json_wavdata(path, json_path, filename="saved",
                         wav=wav_data, flow=flow_data, hs=hs_data)
 
 
-def read_and_save_osu_tester_file(path, filename="saved", json_name="mapthis.json", divisor=4):
+def read_and_save_osu_tester_file(path, filename="saved", json_name="temp/mapthis.json", divisor=4):
     osu_dict, wav_file = read_osu_file(path, convert=True, json_name=json_name)
     sig, samplerate = librosa.load(wav_file, sr=None, mono=True)
     file_len = (sig.shape[0] / samplerate * 1000 - 3000)

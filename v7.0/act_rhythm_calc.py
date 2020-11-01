@@ -63,7 +63,7 @@ def step5_load_model(model_file="saved_rhythm_model"):
 
 
 def step5_load_npz():
-    fn = "mapthis.npz"
+    fn = "temp/mapthis.npz"
 
     return read_npz(fn)
 
@@ -181,7 +181,7 @@ def step5_convert_sliders(data, params):
 def step5_save_predictions(data):
     objs, predictions, ticks, timestamps, is_slider, is_spinner, is_note_end, sv, slider_ticks, dist_multiplier = data
 
-    np.savez_compressed("rhythm_data",
+    np.savez_compressed("temp/rhythm_data",
                         objs=objs,
                         predictions=predictions,
                         ticks=ticks,
