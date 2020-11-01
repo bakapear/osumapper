@@ -17,14 +17,14 @@ except:
     divisor = 4
 
 
-def step1_load_maps():
+def step1_load_maps(path):
     # Test paths and node
     test_process_path("node")
     if not os.path.isdir(mapdata_path):
         os.mkdir(mapdata_path)
 
     # Open maplist
-    with open("maplist.txt", encoding="utf8") as fp:
+    with open(path, encoding="utf8") as fp:
         fcont = fp.readlines()
 
     # Reset results
