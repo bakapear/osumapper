@@ -4,14 +4,16 @@
 # Part 2 action script
 #
 
-from tensorflow.keras.models import Model
-from sklearn.metrics import roc_auc_score
-import tensorflow as tf
-from tensorflow import keras
-import numpy as np
-import matplotlib.pyplot as plt
-import os
 import re
+import matplotlib.pyplot as plt
+import numpy as np
+from tensorflow import keras
+import tensorflow as tf
+from sklearn.metrics import roc_auc_score
+from tensorflow.keras.models import Model
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 
 root = "mapdata/"
 
@@ -249,7 +251,7 @@ def plot_history(history):
 
 class PrintDot(keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs):
-        if epoch % 100 == 0:
+        if epoch != 0 and epoch % 100 == 0:
             print('')
         print('.', end='')
 
@@ -290,6 +292,7 @@ def step2_train_model(model, PARAMS):
         history = model.fit([new_train_data, new_div_data], new_train_labels, epochs=EPOCHS,
                             validation_split=0.2, verbose=0, batch_size=batch_size,
                             callbacks=[early_stop, PrintDot()])
+        print("")
 
         # For development! may cause bug in some environment.
         if PARAMS["plot_history"]:
