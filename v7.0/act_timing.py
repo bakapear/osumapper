@@ -14,7 +14,7 @@ from timing import *
 from metadata import *
 
 
-def get_timed_osu_file(music_path, input_filename="assets/template.osu", output_filename="timing.osu", game_mode=0, mania_key_count=None):
+def get_timed_osu_file(music_path, input_filename="assets/template.osu", output_filename="temp/timing.osu", game_mode=0, mania_key_count=None):
     with open(input_filename) as osu_file:
         osu_text = osu_file.read()
 
@@ -57,6 +57,6 @@ def get_timed_osu_file(music_path, input_filename="assets/template.osu", output_
     with open(output_filename, 'w', encoding="utf8") as osu_output:
         osu_output.write(osu_text)
 
-    copy(music_path, "./audio.mp3")
+    copy(music_path, "./temp/audio.mp3")
 
     return output_filename
