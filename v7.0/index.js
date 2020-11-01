@@ -5,7 +5,10 @@ let TMP = 'temp'
 async function main () {
   switch (process.argv[2]) {
     case 'train': {
-      await util.py('training')
+      let file = process.argv[3]
+      if (!file) return util.error('No file specified.')
+      util.make(TMP)
+      await util.py('training', [file])
       break
     }
     case 'generate': {

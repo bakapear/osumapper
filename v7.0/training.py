@@ -1,13 +1,16 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
+import sys
 from act_flow_ds import *
 from act_train_rhythm import *
 from act_data_prep import *
 import json
 
 
-step1_load_maps("../maps.txt")
+f = sys.argv[1]
+
+step1_load_maps(f)
 
 train_params_p2 = {
     "divisor": 4,

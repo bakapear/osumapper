@@ -33,9 +33,6 @@ module.exports = {
     }
     return res
   },
-  exists: file => {
-    return fs.existsSync(file)
-  },
   grab: (dir, fn) => {
     let file = fs.readdirSync(dir).find(fn)
     return file ? path.join(dir, file) : null
@@ -46,10 +43,8 @@ module.exports = {
       fs.rmdirSync(file, { recursive: true })
     } else fs.unlinkSync(file)
   },
-  join: (...args) => {
-    return path.join(...args)
-  },
-  open: file => {
-    return fs.readFileSync(file, { encoding: 'utf-8' })
-  }
+  exists: file => fs.existsSync(file),
+  join: (...args) => path.join(...args),
+  open: file => fs.readFileSync(file, { encoding: 'utf-8' }),
+  make: dir => fs.mkdirSync(dir)
 }
