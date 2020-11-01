@@ -352,10 +352,10 @@ def step2_evaluate(model):
             actual_result[:, i], pred_result[:, i])))
 
 
-def step2_save(model):
+def step2_save(path, model):
     tf.keras.models.save_model(
         model,
-        "saved_rhythm_model",
+        path,
         overwrite=True,
         include_optimizer=True,
         save_format="h5"

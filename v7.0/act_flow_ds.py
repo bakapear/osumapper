@@ -55,8 +55,8 @@ def step3_read_maps_flow(params):
     return result
 
 
-def step3_save_flow_dataset(maps_flow):
-    np.savez_compressed("flow_dataset", maps=maps_flow)
+def step3_save_flow_dataset(path, maps_flow):
+    np.savez_compressed(path, maps=maps_flow)
 
 
 def read_map_npz_hs(file_path):
