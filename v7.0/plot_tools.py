@@ -45,13 +45,14 @@ class MyLine(lines.Line2D):
         lines.Line2D.draw(self, renderer)
         self.text.draw(renderer)
 
+
 def plot_history(history):
     plt.figure()
     plt.xlabel('Epoch')
     plt.ylabel('Mean Abs Error [Limitless]')
     plt.plot(history.epoch, np.array(history.history['loss']),
-           label='Train Loss')
+             label='Train Loss')
     plt.plot(history.epoch, np.array(history.history['val_loss']),
-           label = 'Val loss')
+             label='Val loss')
     plt.legend()
     plt.show()
